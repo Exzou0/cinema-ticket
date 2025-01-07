@@ -1,55 +1,55 @@
+import java.util.Objects;
+
 public class Movie {
+    public Movie(String movieName, String genre, int duration, int age) {
+        this.movieName = movieName;
+        this.genre = genre;
+        this.duration = duration;
+        this.age = age;
+    }
 
-private String Movie_Name;
-private String genre;
-private int duration;
-private int age;
 
-public  Movie(String Movie_name, String genre, int duration, int age ){
-this.Movie_Name = Movie_name;
-this.genre = genre;
-this.duration = duration;
-this.age = age;
-}
+
+    private String movieName;
+    private String genre;
+    private int duration;
+    private int age;
+
 
     public String getTitle() {
-        return Movie_Name;
-    }
-
-    public String getMovie_Name() {
-        return Movie_Name;
-    }
-
-    public void setMovie_Name(String movie_Name) {
-        Movie_Name = movie_Name;
+        return movieName;
     }
 
     public String getGenre() {
         return genre;
     }
 
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
-
     public int getDuration() {
         return duration;
-    }
-
-    public void setDuration(int duration) {
-        this.duration = duration;
     }
 
     public int getAge() {
         return age;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    @Override
+    public String toString() {
+        return "Movie: " + movieName + ", Genre: " + genre + ", Duration: " + duration + " mins, Age Restriction: " + age + "+";
     }
 
     @Override
-    public String toString() {
-        return "Movie: " + Movie_Name + ", Genre: " + genre + ", Duration: " + duration + " mins, Age Restriction: " + age + "+";
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Movie movie = (Movie) o;
+        return duration == movie.duration &&
+                age == movie.age &&
+                Objects.equals(movieName, movie.movieName) &&
+                Objects.equals(genre, movie.genre);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(movieName, genre, duration, age);
     }
 }
